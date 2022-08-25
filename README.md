@@ -37,8 +37,6 @@ Once `pip` has finished downloading the dependencies:
 ```
 And navigate to `http://127.0.0.1:8000/cart/`.
 
-you just have to add items manually to cart from django admin panel 
-
 ### The WorkFlow 
 1 : add new items from the admin panel. <br />
 2 : create new CartItem for those Items. <br />
