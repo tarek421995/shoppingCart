@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/shoppingCart.css' %}">
+{% endblock %}
+<div class="mx-2 my-2">
+<div id="message" ></div>
+<h1>Cart</h1>
+
+{% if cart.items.all %}
+
+<table id="cart" class="table cart-table" >
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Price<small>(pre Kg in AED)</small></th>
+      <th>Quantity (Kg)</th>
+      <th>Total Item Price </th>
+    </tr>
+  </thead>
+  <tbody class='cart-body' id="adding">
+
+{% include 'carts/cart_list.html' with cart=cart %}
+
+</tbody>
+</table>
+
+{% else %}
+<p class='lead'>Cart is empty</p>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="{% static 'js/shoppingCart.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+.message{
+    border-radius: 50%;
+    text-align:center ;
+    color:red;
+    font-size:12px;
+    background-color:rgba(201, 76, 150, 0.3);
+    padding:8px;
+  } 
+
+#cart{
+    font-size:88%;
+}

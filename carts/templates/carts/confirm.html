@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if msg %}
+    <div class='col-6 mx-auto py-5 text-center'>
+        <h4 class='display-4'>Thank you for your order!!!</h4>
+    </div>  
+    {% else %}
+    <h1>Finalize Checkout</h1>
+    <p>Cart Items: <br>{% for item in cart.items.all %}
+        {% if item.quantity == 0 %}
+        <span>The Item :<b>{{ item.item }}</b> <span style="color: red;"> Does Not Exsit Right Now </span></span>
+        {% else %}
+        <span>Item : <b>{{ item.item }}</b> x <b>{{ item.quantity }}</b> :</b> Total Price : <b>{{ item.total_price}}</b></span>
+        {% endif %}
+        {% if not forloop.last %}<br> 
+        {% endif %}{% endfor %}
+        
+    </p>
+    <p>Cart Total: <input id="total_cart" value="{{ cart.total }}" readonly="readonly"/></p>
+    <form class='form' method='POST' action="{% url 'cart:cart_checkout' %}">{% csrf_token %}
+        <a href="/cart" class='button btn btn-denger'>Back</a>
+        <input type='hidden' id='finalize' name="finalize" value='final' />
+        <button type='submit' id="button" class='button btn btn-success'>Checkout</button>
+    </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Shopping Cart</title>
+        {% include 'base/css.html' %}
+    </head>
+    <body>
+      <ul class="ull" style="margin-bottom: 5%;">
+        <li><a class="active" href="/">Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Log In</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
+        <li><a href="{% url 'cart:home' %}">Cart</a></li>
+      </ul>
+      <div  class='container' >
+        {% if messages %}
+          <div class="alert alert-success messages">
+              {% for message in messages %}
+                <span{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}<br/>
+                </span>
+              {% endfor %}
+          </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+
+      
+
+      {% include 'base/js.html' %}
+      {% block javascript %}
+      {% endblock %}
+  </body>
+</html>
